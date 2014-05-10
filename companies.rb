@@ -60,7 +60,8 @@ class Company
   def generate_employees
     employees = rand(20)
     price_per = @value/number/10
-    increase = employees * 1.0002 + rand(.0001...0003)
+
+    increase = employees * 1.0002 + rand(1..3000)/10000
     @company_info[:growth => {number: employees, price_per: price_per, increase: increase}]
   end
 
