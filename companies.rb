@@ -11,7 +11,6 @@ class Company
   end
 
 
-  private
   def generate_name
     name_array = ['Future', 'Speedy', 'Mega', 'Face', 'Flat', 'American', 'Clean', 'Viral', '8-bit', 'Vegan', 'Literally', 'Retro', 'Ethical', 'Green', 'Sustainable', 'Keen', 'Fit', 'Pied', 'Wierd', 'Slim', 'Lean']
     name_array_2 = ['Mixtape', 'Narwhale', 'Polaroid', 'Hipster', 'Selfie', 'Fixie', 'Flannel', 'Beer', 'Moon', 'Wolf', 'Messenger-bag', 'Hybrid', 'User', 'Start-up', 'Bicycle', 'Skateboard', 'Typewriter', 'Banjo', 'Dog', 'Piper']
