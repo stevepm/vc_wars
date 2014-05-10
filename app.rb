@@ -16,19 +16,18 @@ def buy_options(user)
       puts "ID: #{company[0]}, Name: #{company[1].company}, Value: $#{company[1].value}, Type: #{company[1].genre}"
     end
     company_id = gets.chomp.to_i
-    @companies.each do |company|
-      if company.include?(company_id)
-        if user.capital >= company[1].value
-          company_chosen = true
-          user.capital = user.capital - company[1].value
-          user.add_asset(company[1])
-          puts 'thanks'
-        else
-          puts 'You do not have enough money'
-        end
+    if @companies[company_id - 1].include?(company_id)
+      company_picked = @companies[company_id - 1][1]
+      if user.capital >= company_picked.value
+        company_chosen = true
+        user.capital = user.capital - company_picked.value
+        user.add_asset(company_picked)
+        puts 'thanks'
       else
-        puts 'That company does not exist'
+        puts 'You do not have enough money'
       end
+    else
+      puts 'That company does not exist'
     end
   end
 end
@@ -42,14 +41,16 @@ def wait(user)
 end
 
 def manage_assets(user)
-  puts 'manage'
+  user.assets.each do |company|
+    puts "*" * 30
+    puts "Name: #{company.company}, Value: $#{company.value}, Type: #{company.genre}"
+  end
 end
 
 
 def game_options(user)
-  option_chosen = false
   puts 'Please choose your next option:'
-  until option_chosen
+  until @end_game
     puts 'Buy companies [buy]'
     puts 'Fly to a new city [fly]'
     puts 'Wait a day [wait]'
@@ -59,18 +60,13 @@ def game_options(user)
     case option
       when 'buy'
         buy_options(user)
-        option_chosen = true
       when 'fly'
         fly_options(user)
-        option_chosen = true
       when 'wait'
         wait(user)
-        option_chosen = true
       when 'mng'
         manage_assets(user)
-        option_chosen = true
       when 'quit'
-        option_chosen = true
         @end_game = true
       else
         puts 'Please enter a correct option'
