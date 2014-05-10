@@ -1,19 +1,13 @@
 class User
+  attr_accessor :capital, :city
+  attr_reader :assets
   def initialize(city)
     @city = city
     @capital = city_starting_value(city)
     @assets = []
   end
 
-  def decrease_capital(money)
-    @capital -= money
-  end
-
-  def increase_capital(money)
-    @capital += money
-  end
-
-  def increase_assets(asset)
+  def add_asset(asset)
     @assets << asset
   end
 
@@ -29,10 +23,6 @@ class User
 
   def user_info
     {capital: @capital, net_worth: self.check_net_worth, city: @city}
-  end
-
-  def change_city(city)
-    @city = city
   end
 
   private
