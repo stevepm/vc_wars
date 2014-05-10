@@ -53,7 +53,7 @@ class Company
     first_selector = rand(15)
     last_selector = rand(15)
     name = ceo_first[first_selector] + " " + ceo_last[last_selector]
-    @company_info[:ceo => {name: name, multiplier: 1 }]
+    @company_info[:ceo => {name: name, multiplier: 1}]
   end
 
 
@@ -61,44 +61,10 @@ class Company
     employees = rand(20)
     price_per = @value/number/10
     increase = employees * 1.0002 + rand(.0001...0003)
-    @company_info[:growth => {number: employees, price_per: price_per,increase:increase}]
+    @company_info[:growth => {number: employees, price_per: price_per, increase: increase}]
   end
 
-  def generate_media_type
-    @company_info[:media_type => {type: nil, multiplier: 1, cost: 0}]
-  end
-
-
-
-
-
-
-
-
-  #
-  #def update_media_type
-  #  types = ['TV', 'Print', 'Viral']
-  #  type_selector = rand(3)
-  #  media_type = types[type_selector]
-  #
-  #  case media_type
-  #    when 'TV'
-  #      cost = 75000
-  #      increase = 1.05 + rand((-.03)..(.04))
-  #    when 'Print'
-  #      increase = 1.01 + rand((-.01)..(.03))
-  #      cost = 25000
-  #    when 'Viral'
-  #      increase = 1.00 + rand((-.04)..(.06))
-  #      cost = 10000
-  #  end
-  #  increase
-  #  cost
-  #end
-  #
-
-
-  end
+end
 
 
 
