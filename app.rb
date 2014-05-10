@@ -1,9 +1,36 @@
 require_relative 'lib/user'
+require_relative 'companies'
 
 @end_game = false
+@companies = []
+13.times do |n|
+  @companies << [n+1, Company.new]
+end
 
 def buy_options(user)
-  puts 'buy'
+  puts "Please choose a company to purchase by [id]"
+  company_chosen = false
+  until company_chosen
+    @companies.each do |company|
+      puts "*" * 30
+      puts "ID: #{company[0]}, Name: #{company[1].company}, Value: $#{company[1].value}, Type: #{company[1].genre}"
+    end
+    company_id = gets.chomp.to_i
+    @companies.each do |company|
+      if company.include?(company_id)
+        if user.capital >= company[1].value
+          company_chosen = true
+          user.capital = user.capital - company[1].value
+          user.add_asset(company[1])
+          puts 'thanks'
+        else
+          puts 'You do not have enough money'
+        end
+      else
+        puts 'That company does not exist'
+      end
+    end
+  end
 end
 
 def fly_options(user)
@@ -81,15 +108,6 @@ def display_user_info(user)
   puts "Current City : #{user.user_info[:city]}"
 end
 
-until @end_game
-
-  user = User.new(choose_city)
-  display_user_info(user)
-  game_options(user)
-
-  @end_game = true
-end
-
 def event(user)
 
   probability = rand(1000)
@@ -145,4 +163,15 @@ def event(user)
       user.assets[:company][:value].merge!(:value, new_value)
   end
 end
+
+until @end_game
+
+  user = User.new(choose_city)
+  display_user_info(user)
+  game_options(user)
+
+  @end_game = true
+end
+
+
 

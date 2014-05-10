@@ -1,5 +1,7 @@
 class Company
 
+  attr_reader :company, :value, :genre
+
   def initialize
     @company = generate_name
     @location = location
@@ -9,7 +11,6 @@ class Company
   end
 
 
-  private
   def generate_name
     name_array = ['Future', 'Speedy', 'Mega', 'Face', 'Flat', 'American', 'Clean', 'Viral', '8-bit', 'Vegan', 'Literally', 'Retro', 'Ethical', 'Green', 'Sustainable', 'Keen', 'Fit', 'Pied', 'Wierd', 'Slim', 'Lean']
     name_array_2 = ['Mixtape', 'Narwhale', 'Polaroid', 'Hipster', 'Selfie', 'Fixie', 'Flannel', 'Beer', 'Moon', 'Wolf', 'Messenger-bag', 'Hybrid', 'User', 'Start-up', 'Bicycle', 'Skateboard', 'Typewriter', 'Banjo', 'Dog', 'Piper']
@@ -31,9 +32,9 @@ class Company
         value = rand(120000..222000)
       when 'Vegas'
         value = rand(80000..150000)
-      when 'New York'
+      when 'NY'
         value= rand(250000..320000)
-      when 'SanFrancisco'
+      when 'SF'
         value = rand(270000..350000)
       when 'Boulder'
         value = rand(125000..200000)
