@@ -90,4 +90,59 @@ until @end_game
   @end_game = true
 end
 
+def event(user)
+
+  probability = rand(1000)
+
+  case probability
+    when 1..100 then
+      puts "Zyngo is first to market with the same game your company is working on. :(  Bummer, your company's value just took a 30% nose dive."
+
+      new_value = user.assets[:company][:value] * 0.7 # decreases by 30%
+      user.assets[:company][:value].merge!(:value, new_value) # stores new value in User object
+
+    when 100..200 then
+      puts "Your daughter made a DoTube video of your new game and it went viral!  Your company value has increased 100% overnight!"
+      new_value = user.assets[:company][:value] * 2.00 # increases by 100%
+      user.assets[:company][:value].merge!(:value, new_value) # stores new value in User object
+
+    when 200..300 then
+      puts "Just another day at the office. Your value decreases by the amount of your McDoNode's lunch... $5.64"
+      new_value = user.assets[:company][:value] - 5.64
+      user.assets[:company][:value].merge!(:value, new_value)
+
+    when 300..400 then
+      puts "Your CEO, #{user.assets[:company][:ceo]}, has dysentery and must take an extended leave of absence.  The company is falling into disarray and loses 20% value."
+      new_value = user.assets[:company][:value] * 0.8
+      user.assets[:company][:value].merge!(:value, new_value)
+
+    when 400..500 then
+      puts "Actor Richard Penile has an unfortunate encounter with Lorena Bobbit.  This doesn't affect your company at all, but we thought you should know."
+
+    when 500..600 then
+      puts "Customers love your new game.  It's not exactly a hit, but it definitely made some money for you!  Your company value increases by 25%."
+      new_value = user.assets[:company][:value] * 1.25
+      user.assets[:company][:value].merge!(:value, new_value)
+
+    when 600..700 then
+      puts "The world finds out that you like child porn.  You've lost it all."
+      new_value = 0
+      user.assets[:company][:value].merge!(:value, new_value)
+
+    when 700..800 then
+      puts "Multiple competitors take an interest in your new gaming engine.  Your value shoots through the roof!"
+      new_value = user.assets[:company][:value] * 6.60
+      user.assets[:company][:value].merge!(:value, new_value)
+
+    when 800..900 then
+      puts "Your CEO dies in a tragic, but epic, figure skating accident. Your company loses 40% value"
+      new_value = user.assets[:company][:value] * 0.6
+      user.assets[:company][:value].merge!(:value, new_value)
+
+    when 900..1000 then
+      puts "You were sick today... you have no clue what happened to your company's value."
+      new_value = user.assets[:company][:value] * rand(0.2..2.5)
+      user.assets[:company][:value].merge!(:value, new_value)
+  end
+end
 
