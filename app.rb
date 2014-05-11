@@ -51,6 +51,7 @@ end
 def game_options(user)
   puts 'Please choose your next option:'
   until @end_game
+    display_user_info(user)
     puts 'Buy companies [buy]'
     puts 'Fly to a new city [fly]'
     puts 'Wait a day [wait]'
@@ -163,7 +164,6 @@ end
 until @end_game
 
   user = User.new(choose_city)
-  display_user_info(user)
   game_options(user)
 
   @end_game = true

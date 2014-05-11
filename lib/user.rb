@@ -14,7 +14,7 @@ class User
   def check_net_worth
     net_worth = 0
     @assets.map do |asset|
-      asset[:value]
+      asset.value
     end.each do |value|
       net_worth += value.to_i
     end
