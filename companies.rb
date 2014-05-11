@@ -13,6 +13,7 @@ class Company
     generate_value(@location)
     generate_ceo
     generate_employees
+    generate_genre
   end
 
 
@@ -62,11 +63,11 @@ class Company
 
 
   def generate_employees
-    employees = rand(20)
+    employees = rand(1..20)
     price_per = @value/employees/10
 
     increase = employees * 1.0002 + rand(1..3000)/10000
-    @company_info[:growth => {number: employees, price_per: price_per, increase: increase}]
+    @company_info[:growth => {number: employees, price_per: price_per, multiplier: increase}]
   end
 
 end

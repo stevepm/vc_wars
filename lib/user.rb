@@ -25,6 +25,19 @@ class User
     {capital: @capital, net_worth: self.check_net_worth, city: @city}
   end
 
+
+
+  def fly(destination, price)
+    city_array = ['austin', 'vegas', 'ny', 'sf', 'boulder']
+    if city_array.include?(destination)
+      @city = destination
+      @capital -= price
+      puts "You have flown to #{destination}"
+    else
+      puts 'You must choose a valid destination'
+    end
+  end
+
   private
 
   def city_starting_value(city)

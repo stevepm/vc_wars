@@ -33,8 +33,36 @@ def buy_options(user)
 end
 
 def fly_options(user)
-  puts 'fly'
+  austin_price = rand(200..500)
+  vegas_price = rand(200..500)
+  ny_price = rand(200..500)
+  sf_price = rand(200..500)
+  boulder_price = rand(200..500)
+  puts 'Please select a city to fly to'
+  puts "Austin cost = $ #{austin_price},"
+  puts "Vegas cost = $ #{vegas_price},"
+  puts "NY cost = $ #{ny_price},"
+  puts "SF cost = $ #{sf_price},"
+  puts "Boulder cost = $ #{boulder_price}."
+  destination_city = gets.chomp.downcase
+  case destination_city
+    when 'austin'
+      price = austin_price
+    when 'vegas'
+      price = vegas_price
+    when 'ny'
+      price = ny_price
+    when 'sf'
+      price = sf_price
+    when 'boulder'
+      price = boulder_price
+  end
+
+   user.fly(destination_city, price)
+
+
 end
+
 
 def wait(user)
   puts 'wait'
