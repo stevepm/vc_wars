@@ -3,11 +3,16 @@ class Company
   attr_reader :company, :location, :value, :genre
 
   def initialize
-    @company = generate_name
-    @location = location
-    @value = value
-    @genre = genre
+    @company = nil
+    @location = nil
+    @value = nil
+    @genre = nil
     @company_info = {}
+    generate_name
+    generate_location
+    generate_value(@location)
+    generate_ceo
+    generate_employees
   end
 
 
@@ -16,35 +21,34 @@ class Company
     name_array_2 = ['Mixtape', 'Narwhale', 'Polaroid', 'Hipster', 'Selfie', 'Fixie', 'Flannel', 'Beer', 'Moon', 'Wolf', 'Messenger-bag', 'Hybrid', 'User', 'Start-up', 'Bicycle', 'Skateboard', 'Typewriter', 'Banjo', 'Dog', 'Piper']
     selector_1 = rand(21)
     selector_2 = rand(20)
-    name_array[selector_1] + " " +name_array_2[selector_2]
+    @company = name_array[selector_1] + " " +name_array_2[selector_2]
   end
 
-  def location
+  def generate_location
     cities = ['Austin', 'Vegas', 'NY', 'SF', 'Boulder']
     selector = rand(5)
-    cities[selector]
+    @location = cities[selector]
   end
 
-  def value
-    case @location
+  def generate_value(location)
+    case location
       when 'Austin'
-        value = rand(120000..222000)
+        @value = rand(120000..222000)
       when 'Vegas'
-        value = rand(80000..150000)
+        @value = rand(80000..150000)
       when 'NY'
-        value= rand(250000..320000)
+        @value= rand(250000..320000)
       when 'SF'
-        value = rand(270000..350000)
+        @value = rand(270000..350000)
       when 'Boulder'
-        value = rand(125000..200000)
+        @value = rand(125000..200000)
     end
-    value
   end
 
-  def genre
+  def generate_genre
     genres = ['Games', 'Social-media', 'Product']
     selector = rand(3)
-    genres[selector]
+    @genre = genres[selector]
   end
 
   def generate_ceo
@@ -59,7 +63,7 @@ class Company
 
   def generate_employees
     employees = rand(20)
-    price_per = @value/number/10
+    price_per = @value/employees/10
 
     increase = employees * 1.0002 + rand(1..3000)/10000
     @company_info[:growth => {number: employees, price_per: price_per, increase: increase}]
